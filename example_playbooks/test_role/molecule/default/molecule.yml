@@ -1,0 +1,21 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: huyphung_prod
+    image: geerlingguy/docker-ubuntu2004-ansible:latest
+    command: ''
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  options:
+    'extra-vars': "folder_path='./conan'"
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-playbook.yml}

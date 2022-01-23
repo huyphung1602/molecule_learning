@@ -1,0 +1,9 @@
+---
+- name: Create directory
+  hosts: "huyphung_prod"
+  tasks:
+    - name: Create directory
+      become: yes
+      file:
+        path: "{{ folder_path }}"
+        state: directory

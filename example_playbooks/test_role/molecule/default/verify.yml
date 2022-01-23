@@ -1,0 +1,15 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Ansible check file exists example.
+    stat:
+      path: "{{ folder_path }}"
+    register: file_details
+
+  - debug:
+      msg: "The file or directory exists"
+    when: file_details.stat.exists
